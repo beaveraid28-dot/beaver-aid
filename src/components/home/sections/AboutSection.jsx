@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import BrandName from "@/components/ui/BrandName";
 
 export default function AboutSection() {
   return (
@@ -25,22 +26,19 @@ export default function AboutSection() {
 
             <div className="space-y-6 text-gray-300 leading-relaxed">
               <p>
-                Mon parcours est atypique et c&apos;est ce qui fait ma force. Pendant plus de <strong className="text-primary font-bold">20 ans</strong>, j&apos;ai exercé en tant qu&apos;artisan électricien et serrurier. Ces années de terrain m&apos;ont appris la rigueur, la précision et le sens du service client.
+                L&apos;artisanat est avant tout une histoire de famille et de transmission. J&apos;ai exercé le métier d&apos;électricien serrurier pendant <strong className="text-primary font-bold">23 ans</strong> au sein de notre société familiale à Paris, travaillant aux côtés de mes parents et de mes frères. En tant qu&apos;aîné, c&apos;est là que j&apos;ai forgé mon exigence et ma passion du métier.
               </p>
               <p>
-                Aujourd&apos;hui, je mets cette solide expérience technique au service de vos installations électriques et de la sécurité de votre domicile.
-              </p>
-              <p>
-                Que ce soit pour sécuriser votre habitation ou rénover votre installation électrique, je vous apporte une solution concrète, fiable et professionnelle.
+                Aujourd&apos;hui, j&apos;interviens en <strong className="text-primary font-bold">Eure (27) et Eure-et-Loir (28)</strong>, tout en collaborant régulièrement avec mes frères de <a href="https://www.atelierfreresdantan.fr/" target="_blank" rel="noopener noreferrer" className="text-primary font-bold hover:underline">L&apos;Atelier des Frères d&apos;Antan</a> situés à Montfort-l&apos;Amaury (78). Très proches de l&apos;Eure-et-Loir, ils rayonnent sur les Yvelines, nous permettant d&apos;unir nos forces sur des projets communs avec une exigence fraternelle. Je porte les couleurs de <BrandName /> avec cette même rigueur.
               </p>
             </div>
 
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                "Plus de 20 ans d&apos;expérience",
-                "Interlocuteur unique",
-                "Travail soigné",
-                "Polyvalence technique"
+                "Garantie Décennale incluse",
+                "Normes NF C 15-100 & CE",
+                "Chantier propre garanti",
+                "Assurance pro à jour"
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-3 group">
                   <div className="p-1.5 rounded-full bg-white/10 ring-1 ring-white/10 group-hover:ring-primary/30 transition-colors shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]">
@@ -50,6 +48,20 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
+
+            {/* Launch Offer / CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-10 p-6 rounded-2xl bg-primary/10 border border-primary/20 ring-1 ring-primary/10 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 p-2 bg-primary text-background font-bold text-[10px] uppercase tracking-tighter rounded-bl-lg">Offre de Lancement</div>
+              <p className="text-white font-bold mb-2">Bilan Sécurité Offert</p>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Pour mes 10 premiers clients, je réalise un <span className="text-primary font-medium">diagnostic sécurité gratuit</span> de votre installation électrique lors de mon passage.
+              </p>
+            </motion.div>
           </motion.div>
 
           {/* Visual / Image Placeholder */}
@@ -66,7 +78,7 @@ export default function AboutSection() {
 
               <div className="absolute inset-0 flex items-center justify-center text-center p-8">
                 <div className="relative z-10">
-                  <span className="block text-7xl font-black text-primary mb-2 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]">20+</span>
+                  <span className="block text-7xl font-black text-primary mb-2 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]">23</span>
                   <span className="block text-3xl font-bold text-foreground mb-2 tracking-wide">Années</span>
                   <span className="block text-lg text-foreground-muted font-medium tracking-widest uppercase">d&apos;Expérience</span>
                 </div>

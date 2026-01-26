@@ -5,7 +5,7 @@ import AboutCTA from "./components/sections/AboutCTA";
 
 export const metadata = {
   title: "À Propos de PRODIGELEC - Artisan Électricien & Serrurier | Eure-et-Loir",
-  description: "Découvrez le parcours de PRODIGELEC, artisan électricien serrurier avec 20 ans d'expérience. Une expertise de terrain au service de vos projets.",
+  description: "Découvrez le parcours de PRODIGELEC, artisan électricien serrurier avec 23 ans d'expérience. Une expertise de terrain au service de vos projets.",
   alternates: {
     canonical: "/about",
   },
@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background pt-24 pb-20">
+    <main className="min-h-screen bg-background pt-24 pb-20 my-16">
       <div className="max-w-7xl mx-auto px-6">
         <AboutHero />
         <AboutStory />

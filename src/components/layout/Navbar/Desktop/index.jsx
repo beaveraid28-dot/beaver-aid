@@ -2,6 +2,8 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { IoKey } from "react-icons/io5";
+import { FcFlashOn } from "react-icons/fc";
 import Logo from "../Logo";
 
 export default function Navbar() {
@@ -19,8 +21,8 @@ export default function Navbar() {
             name: 'Services',
             href: '#services',
             dropdown: [
-                { name: 'Serrurerie', href: '/services/serrurerie', icon: '🔑' },
-                { name: 'Électricité', href: '/services/electricite', icon: '⚡' }
+                { name: 'Serrurerie', href: '/services/serrurerie', icon: <IoKey className="w-5 h-5" /> },
+                { name: 'Électricité', href: '/services/electricite', icon: <FcFlashOn className="w-5 h-5" /> }
             ]
         },
         { name: 'Réalisations', href: isHomePage ? '#realisations' : '/#realisations' },
@@ -87,7 +89,7 @@ export default function Navbar() {
                 <Logo className={`${isScrolled ? 'scale-90' : 'scale-100'} transition-transform duration-500`} />
 
                 {/* Navigation Links */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden lg:flex items-center gap-8">
                     {navItems.map((item, i) => (
                         <div key={item.name} className="relative group">
                             <motion.a
