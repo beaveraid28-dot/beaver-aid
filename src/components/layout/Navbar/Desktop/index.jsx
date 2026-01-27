@@ -82,7 +82,7 @@ export default function Navbar() {
                 paddingTop: navPadding,
                 paddingBottom: navPadding
             }}
-            className="fixed top-0 w-full z-50 border-b border-white/0 transition-all duration-500"
+            className="fixed top-0 w-full z-999 border-b border-white/0 transition-all duration-500"
         >
             <div className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-500 ${isScrolled ? 'bg-black/20 rounded-full border border-white/10 px-8 mx-4 backdrop-blur-md shadow-lg' : ''}`}>
                 {/* Logo & Brand */}
@@ -139,8 +139,21 @@ export default function Navbar() {
                 <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-6"
+                    className="flex items-center gap-4"
                 >
+                    <motion.button
+                        onClick={() => {
+                            window.location.href = '/flyer';
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="relative overflow-hidden bg-white/10 text-white border border-white/20 px-5 py-2.5 rounded-full text-sm font-bold hover:bg-white/20 transition-all group hidden xl:block"
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                            <span className="text-lg">🎁</span> OFFRE -10%
+                        </span>
+                    </motion.button>
+
                     <motion.button
                         onClick={() => {
                             window.location.href = '/contact#contact-form';

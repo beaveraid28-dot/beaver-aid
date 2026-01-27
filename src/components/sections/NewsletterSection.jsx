@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Send, Bell, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 
 export default function NewsletterSection() {
     const [email, setEmail] = useState("");
@@ -17,25 +18,30 @@ export default function NewsletterSection() {
         setErrorMessage("");
 
         try {
-            const response = await fetch("/api/newsletter", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email }),
-            });
+            // Envoi à EmailJS
+            const result = await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+                {
+                    user_email: email,
+                    user_name: 'Abonné Newsletter',
+                    service: 'Inscription Newsletter',
+                    message: 'Nouvelle inscription reçue depuis le site.',
+                    user_city: ''
+                },
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+            );
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || "Une erreur est survenue.");
+            if (result.text === 'OK') {
+                setStatus("success");
+                setEmail("");
+                setAgreedToGdpr(false);
+                setTimeout(() => setStatus("idle"), 5000);
             }
-
-            setStatus("success");
-            setEmail("");
-            setAgreedToGdpr(false);
-            setTimeout(() => setStatus("idle"), 5000);
         } catch (error) {
+            console.error('Erreur inscription newsletter:', error);
             setStatus("error");
-            setErrorMessage(error.message);
+            setErrorMessage("Une erreur est survenue lors de l'inscription.");
             setTimeout(() => setStatus("idle"), 4000);
         }
     };
@@ -99,12 +105,12 @@ export default function NewsletterSection() {
                                         type="submit"
                                         disabled={status === "loading" || status === "success" || !agreedToGdpr}
                                         className={`relative overflow-hidden px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 min-w-[180px] ${status === "success"
-                                                ? "bg-success text-white shadow-lg shadow-success/20"
-                                                : status === "error"
-                                                    ? "bg-error text-white shadow-lg shadow-error/20"
-                                                    : !agreedToGdpr && status === "idle"
-                                                        ? "bg-white/5 text-white/30 cursor-not-allowed border border-white/10"
-                                                        : "bg-primary text-background hover:bg-primary-light shadow-lg shadow-primary/20"
+                                            ? "bg-success text-white shadow-lg shadow-success/20"
+                                            : status === "error"
+                                                ? "bg-error text-white shadow-lg shadow-error/20"
+                                                : !agreedToGdpr && status === "idle"
+                                                    ? "bg-white/5 text-white/30 cursor-not-allowed border border-white/10"
+                                                    : "bg-primary text-background hover:bg-primary-light shadow-lg shadow-primary/20"
                                             }`}
                                     >
                                         {(status === "idle" || status === "error") && (
